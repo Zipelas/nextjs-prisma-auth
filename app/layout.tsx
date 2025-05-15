@@ -27,6 +27,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <header className="bg-slate-100 p-2">
+          <span className="2-xl ">Next JS + Prisma</span>
+        </header>
         {children}
       </body>
     </html>
