@@ -1,38 +1,17 @@
-export default function Home() {
+export default async function Home() {
+  const post = await db.post.findMany({})
+  
   return (
     <main>
       <section className='bg-sky-500 p-2 grid gap-4'>
         <h2 className='text-xl'>Things happening right now</h2>
         <article>
-          <span className='text-sm text-slate-700'>Created by: Zipelas</span>
-          <h3 className='text-lg font-bold'>Lorem Ipsum</h3>
-          <p className='text-slate-800'>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora
-            sequi tempore atque facere, consequuntur veniam saepe dicta fugiat
-            esse vel cum neque officiis consectetur animi harum, ut iste. Sint,
-            consectetur.
+          <span className='text-sm text-slate-700'>Created by: {post.author}</span>
+          <h3 className='text-lg font-bold'>{post.title}</h3>
+          <p className='text-slate-800'>{post.content}
           </p>
         </article>
-        <article>
-          <span className='text-sm text-slate-700'>Created by: Mutti</span>
-          <h3 className='text-lg font-bold'>Lorem Ipsum</h3>
-          <p className='text-slate-800'>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora
-            sequi tempore atque facere, consequuntur veniam saepe dicta fugiat
-            esse vel cum neque officiis consectetur animi harum, ut iste. Sint,
-            consectetur.
-          </p>
-        </article>
-        <article>
-          <span className='text-sm text-slate-700'>Created by: Putte</span>
-          <h3 className='text-lg font-bold'>Lorem Ipsum</h3>
-          <p className='text-slate-800'>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora
-            sequi tempore atque facere, consequuntur veniam saepe dicta fugiat
-            esse vel cum neque officiis consectetur animi harum, ut iste. Sint,
-            consectetur.
-          </p>
-        </article>
+        
       </section>
     </main>
   );
