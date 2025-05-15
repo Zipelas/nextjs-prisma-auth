@@ -9,15 +9,15 @@ async function main() {
       posts: {
         create: [
           {
-            title: 'First Post',
-            content: 'This is the content of the first post',
+            title: 'GRRRR',
+            content: 'Va fan fungerar det inte för :-(',
           },
           {
-            title: '2nd Post',
+            title: 'Zipelas 2a post',
             content: 'This is the content of the second post',
           },
           {
-            title: '3rd Post',
+            title: 'Zipelas 3e post',
             content: 'This is the content of the third post',
           },
         ],
@@ -33,15 +33,15 @@ async function main() {
       posts: {
         create: [
           {
-            title: 'First Post',
+            title: 'Patas 1a post',
             content: 'This is the content of the first post',
           },
           {
-            title: '2nd Post',
+            title: 'Patas 2a post',
             content: 'This is the content of the second post',
           },
           {
-            title: '3rd Post',
+            title: 'Patas 3e post',
             content: 'This is the content of the third post',
           },
         ],
