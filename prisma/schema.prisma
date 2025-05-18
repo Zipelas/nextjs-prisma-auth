@@ -15,19 +15,19 @@ datasource db {
 }
 
 model Post {
-  id      Int @id @default(autoincrement())
-  title   String
-  content  String
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
   createdAt DateTime @default(now())
-  authorId Int
+  authorId  Int
 
   author User @relation(fields: [authorId], references: [id])
 }
 
 model User {
-    id Int @id @default(autoincrement())
-    name String
-    createdAt DateTime @default(now())
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
 
-   posts Post[]
+  posts Post[]
 }
