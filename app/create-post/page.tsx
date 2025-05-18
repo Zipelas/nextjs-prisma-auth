@@ -1,7 +1,9 @@
+import PostForm from "./post-form";
+
 export default function CreatePost() {
-    return 
+  return (
     <main>
-        <PostForm>
-        </PostForm>
-        </main>;
+      <PostForm />
+    </main>
+  );
 }
