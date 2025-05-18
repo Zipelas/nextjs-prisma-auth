@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NextJS & Prisma
 
-## Getting Started
+## Installation
 
-First, run the development server:
+Kör som vanligt med `npm run dev`. Se [package.json](./package.json) för andra skript att köra.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Prisma och SQL
+
+Här är koden vi skrev gällande Prisma och dess motsvarighet i SQL.
+
+### Hämta data ur databasen
+
+Du kan läsa mer om hur [uthämtningsfrågor](https://www.prisma.io/docs/orm/prisma-client/queries/crud#read) skrivs på Prisma's hemsida.
+
+```typescript
+const posts = await db.post.findMany({
+  where: { authorId: { in: [1, 2] } },
+  include: {
+    author: {
+      select: { name: true },
+    },
+  },
+});
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```sql
+SELECT p.*, a.name
+FROM post p
+JOIN author a ON p.authorId = a.id
+WHERE p.authorId IN (1, 2);
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Definiera databasens tabeller
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Här hittar du dokumentationen över [hur modeller skrivs](https://www.prisma.io/docs/orm/prisma-schema/data-model/models) i Prisma's schema.
 
-## Learn More
+```prisma
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
 
-To learn more about Next.js, take a look at the following resources:
+  posts Post[]
+}
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```sql
+CREATE TABLE User (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+Relationer i Prisma skrivs med @relation och [här kan det vara bra att läsa](https://www.prisma.io/docs/orm/prisma-schema/data-model/relations) lite om de olika typer av relationer som finns, en-till-många, många-till-många, etc.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```prisma
+model Post {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  createdAt DateTime @default(now())
+  authorId  Int
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+  author User @relation(fields: [authorId], references: [id])
+}
+```
+
+```sql
+CREATE TABLE Post (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(255) NOT NULL,
+  content TEXT NOT NULL,
+  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+  authorId INT,
+  FOREIGN KEY (authorId) REFERENCES User(id) ON DELETE CASCADE
+);
+```
+
+### Insättning av ny data i databasen
+
+[Här kan du läsa](https://www.prisma.io/docs/orm/prisma-client/queries/crud#create) om hur ny data skapas i Prisma.
+
+```typescript
+await db.post.create({ data: { ...postData, authorId: 1 } });
+```
+
+```sql
+INSERT INTO post (title, content, authorId)
+VALUES ('En titel', 'En lång text...', 1);
+```
+
+### Uppdatering och borttagning
+
+Vi skrev ingenting i dagens genomgång gällande borttagning eller uppdatering men du hittar dokumentationen [här](https://www.prisma.io/docs/orm/prisma-client/queries/crud).
