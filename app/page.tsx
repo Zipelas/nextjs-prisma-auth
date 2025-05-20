@@ -2,7 +2,6 @@ import { db } from '@/prisma/client';
 
 export default async function Home() {
   const posts = await db.post.findMany({
-    where: { authorId: { in: [1, 2] } },
     include: {
       author: {
         select: { name: true },

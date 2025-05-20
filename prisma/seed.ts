@@ -2,10 +2,14 @@ import { db } from './client';
 
 async function main() {
   await db.user.upsert({
-    where: { id: 1 },
+    where: { id: '1' },
     update: {},
     create: {
+      id: '1',
       name: 'Zipelas',
+      email: 'mcshaffa@gmail.com',
+      emailVerified: false,
+      updatedAt: new Date(),
       posts: {
         create: [
           {
@@ -26,10 +30,14 @@ async function main() {
   });
 
   await db.user.upsert({
-    where: { id: 2 },
+    where: { id: '2' },
     update: {},
     create: {
+      id: '2',
       name: 'Putte',
+      email: 'putte@example.com',
+      emailVerified: false,
+      updatedAt: new Date(),
       posts: {
         create: [
           {
