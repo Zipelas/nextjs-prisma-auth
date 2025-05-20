@@ -20,7 +20,7 @@ export default async function Home() {
               Created by: {post.author.name}
             </span>
             <h3 className='text-lg font-bold'>{post.title}</h3>
-            <p className='text-slate-800'>{post.content}</p>
+            <p className='text-sky-500'>{post.content}</p>
           </article>
         ))}
       </section>
