@@ -24,12 +24,12 @@ export default function PostForm() {
         type='text'
         {...form.register('title')}
         placeholder='Title'
-        className='p-1 border rounded border-slate-400'
+        className='p-1 border rounded border-sky-500'
       />
       <textarea
         {...form.register('content')}
         placeholder='Content'
-        className='p-1 border rounded border-slate-400'
+        className='p-1 border rounded border-sky-500'
       />
       <button className='bg-sky-500 bg-hover-sky-700 p-1 rounded'>Save</button>
     </form>
