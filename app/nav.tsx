@@ -11,11 +11,15 @@ export default function Nav() {
       {data ? (
         <>
           <Link href='/create-post'>Create</Link>
-          <button onClick={() => signOut()}>Signout</button>
+          <button
+            className='cursor-pointer'
+            onClick={() => signOut()}>
+            Signout
+          </button>
         </>
       ) : (
         <>
-          <Link href='/signIn'>Signin</Link>
+          <Link href='/signin'>Signin</Link>
         </>
       )}
     </nav>
