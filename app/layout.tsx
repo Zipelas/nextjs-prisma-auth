@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`bg-black text-sky-500 ${geistSans.variable} ${geistMono.variable} antialiased`}>
+        className={`bg-pink-500 text-sky-500 ${geistSans.variable} ${geistMono.variable} antialiased`}>
         <header className='bg-sky-500 p-2 flex justify-between items-center'>
           <span className='text-2xl'>NextJS + Prisma</span>
           <Nav />
