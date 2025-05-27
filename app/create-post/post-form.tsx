@@ -31,7 +31,7 @@ export default function PostForm() {
         placeholder='Content'
         className='p-1 border rounded border-slate-400 text-sky-500'
       />
-      <button className='bg-sky-500 bg-hover-sky-700 p-1 rounded'>Save</button>
+      <button className='bg-sky-500 bg-hover-sky-700 p-1 rounded cursor-pointer'>Save</button>
     </form>
   );
 }
