@@ -10,7 +10,7 @@ export default async function Home() {
   });
 
   return (
-    <main className='bg-pink-500 text-sky-500'>
+    <main className='bg-black text-sky-500'>
       <section className='p-2 grid gap-4'>
         <h2 className='text-sky-500 text-xl'>Things happening right now!</h2>
         {posts.map((post) => (
