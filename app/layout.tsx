@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import Link from 'next/link';
 import './globals.css';
+import Nav from './nav';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -23,15 +23,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-  
   return (
     <html lang='en'>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <header className='bg-sky-500 p-2 flex justify-between items-center'>
           <span className='text-2xl'>NextJS + Prisma</span>
-          <Link href='/create-post'>Create</Link>
+          <Nav />
         </header>
         {children}
       </body>
