@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { signOut, useSession } from './auth-client';
 
@@ -9,11 +11,11 @@ export default function Nav() {
       {data ? (
         <>
           <Link href='/create-post'>Create</Link>
-          <button onClick={() => signOut()}>Sign out</button>
+          <button onClick={() => signOut()}>Signout</button>
         </>
       ) : (
         <>
-          <Link href='/create-post'>Create</Link>
+          <Link href='/signIn'>Signin</Link>
         </>
       )}
     </nav>
