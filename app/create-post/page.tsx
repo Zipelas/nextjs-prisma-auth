@@ -1,8 +1,8 @@
-import PostForm from "./post-form";
+import PostForm from './post-form';
 
 export default function CreatePost() {
   return (
-    <main>
+    <main className='bg-black'>
       <PostForm />
     </main>
   );
